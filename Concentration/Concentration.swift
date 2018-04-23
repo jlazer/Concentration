@@ -12,6 +12,7 @@ class Concentration
 {
     var cards = [Card]()
     var indexOfOneAndOnlyFaceUpCard: Int?
+    var shuffledCards = [Card]()
     
   
     func chooseCard(at index: Int) {
@@ -42,6 +43,11 @@ class Concentration
            cards += [card, card]
         }
         // TODO: Shuffle the cards
-        
+        for index in (1...cards.count).reversed(){
+            let randomIndex = Int(arc4random_uniform(UInt32(index)))
+            shuffledCards.append(cards[randomIndex])
+            cards.remove(at: randomIndex)
+        }
+        cards = shuffledCards
     }
 }
